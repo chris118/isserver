@@ -4,6 +4,7 @@
 #include "handy.h"
 #include "spdlog.h"
 #include "sinks/basic_file_sink.h"
+#include "sinks/daily_file_sink.h"
 
 using namespace handy;
 
@@ -50,6 +51,7 @@ int main(int argc, const char *argv[]) {
     //  test spdlog
     //
     /////////////////////////////
+
     spdlog::info("Welcome to spdlog!");
     spdlog::error("Some error message with arg: {}", 1);
     
@@ -70,9 +72,13 @@ int main(int argc, const char *argv[]) {
     SPDLOG_TRACE("Some trace message with param {}", {});
     SPDLOG_DEBUG("Some debug message");
     
-    // Set the default logger to file logger
-    auto file_logger = spdlog::basic_logger_mt("basic_logger", "logs/basic.txt");
-    spdlog::set_default_logger(file_logger);      
+    // // Set the default logger to file logger
+    // auto file_logger = spdlog::basic_logger_mt("basic_logger", "logs/basic.txt");
+    // spdlog::set_default_logger(file_logger);     
+
+     // Create a daily logger - a new file is created every day on 2:30am
+    auto daily_logger = spdlog::daily_logger_mt("daily_logger", "logs/daily.txt", 2, 30); 
+    // spdlog::set_default_logger(daily_logger);     
 
     ////////////////////////////// 
     //
