@@ -1,8 +1,21 @@
+#include <iostream>
 #include "handy.h"
 #include "spdlog.h"
 #include "sinks/basic_file_sink.h"
 
+using namespace std;
 using namespace handy;
+
+
+void printBuffer(char* buff, int size, std::string tag){
+    std::cout << tag << std::endl;
+        for(int i = 0; i < size; i++){
+            // printf("%02x", buff[i]);
+            printf("%02x", buff[i]);
+    }
+    std::cout << std::endl << std::endl;
+}
+
 
 int main(int argc, const char *argv[]) {
       spdlog::info("Welcome to spdlog!");
@@ -30,8 +43,12 @@ int main(int argc, const char *argv[]) {
     spdlog::set_default_logger(file_logger);      
 
 
+
+
+
+
     setloglevel("TRACE");
-    EventBase base;
+   EventBase base;
     Signal::signal(SIGINT, [&] { base.exit(); });
     UdpServerPtr svr = UdpServer::startServer(&base, "", 2099);
     exitif(!svr, "start udp server failed");
@@ -40,6 +57,8 @@ int main(int argc, const char *argv[]) {
         p->sendTo(buf, peer);
     });
     base.loop();
+
+
 
       
 }
