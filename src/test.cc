@@ -77,7 +77,7 @@ int main(int argc, const char *argv[]) {
     // spdlog::set_default_logger(file_logger);     
 
      // Create a daily logger - a new file is created every day on 2:30am
-    auto daily_logger = spdlog::daily_logger_mt("daily_logger", "logs/daily.txt", 2, 30); 
+    auto daily_logger = spdlog::daily_logger_mt("daily_logger", "logs/daily.txt", 20, 30); 
     // spdlog::set_default_logger(daily_logger);     
 
     ////////////////////////////// 

@@ -17,7 +17,7 @@ option(BUILD_SERVER_STATIC_LIBRARY "Build server Shared Library" ON)
 option(BUILD_SERVER_EXAMPLES "Build server Examples" OFF)
 
 list(APPEND SERVER_SRCS
-    ${PROJECT_SOURCE_DIR}/src/main.cc)
+    ${PROJECT_SOURCE_DIR}/src/tcpserver.cc)
 
 # 二进制文件输出到bin
 set( EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin )
