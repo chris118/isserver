@@ -1,3 +1,0 @@
-/Users/wangxiaopeng/repo/cpp/isserver/CMakeFiles/rebuild_cache.dir
-/Users/wangxiaopeng/repo/cpp/isserver/CMakeFiles/edit_cache.dir
-/Users/wangxiaopeng/repo/cpp/isserver/CMakeFiles/isserver.dir

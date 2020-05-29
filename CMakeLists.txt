@@ -11,13 +11,16 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread" 
  
 # 常见依赖库：cv
 #find_package( OpenCV REQUIRED )
+find_package (glog REQUIRED)
 
 option(BUILD_SERVER_SHARED_LIBRARY "Build server Shared Library" OFF)
 option(BUILD_SERVER_STATIC_LIBRARY "Build server Shared Library" ON)
 option(BUILD_SERVER_EXAMPLES "Build server Examples" OFF)
 
 list(APPEND SERVER_SRCS
-    ${PROJECT_SOURCE_DIR}/src/tcpserver.cc)
+    ${PROJECT_SOURCE_DIR}/src/main.cc
+    ${PROJECT_SOURCE_DIR}/src/hhlog.cc
+    ${PROJECT_SOURCE_DIR}/src/timer.cc)
 
 # 二进制文件输出到bin
 set( EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin )
@@ -28,13 +31,15 @@ set( LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib )
 # 库文件目录
 link_directories(
     ${PROJECT_SOURCE_DIR}/libs/x86/handy
-    # ${PROJECT_SOURCE_DIR}/libs/x86/spdlog
+    ${PROJECT_SOURCE_DIR}/libs/x86/spdlog
+    /usr/local/lib/
 )
 
 # 头文件目录
 include_directories (
     ${PROJECT_SOURCE_DIR}/include/handy
     ${PROJECT_SOURCE_DIR}/include/spdlog
+    /usr/local/include
 )
 
 # #server Static library
@@ -49,4 +54,4 @@ include_directories (
 
 
 add_executable(isserver ${SERVER_SRCS})
-target_link_libraries(isserver libhandy.a)
+target_link_libraries(isserver glog libhandy.a)
